@@ -42,6 +42,19 @@ jobs:
         with:
           path: 'flody_ws/etc/'
 
+      - name: AWS Mfa login
+        uses: floatic-unicorn/floatic-github-actions/aws-mfa-login@main
+        with:
+          access_key_id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          secret_access_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          mfa_key: ${{ secrets.MFA_KEY }}
+          mfa_arn: ${{ secrets.MFA_ARN }}
+
+      - name: PPA server access
+        uses: floatic-unicorn/floatic-github-actions/floatic-ppa-access@main
+        with:
+          target_group_name: ${{ secrets.SECURITY_GROUP_NAME }}
+
       - name: Checkout submodules
         run: |
           cd flody_ws/etc
