@@ -43,7 +43,7 @@ jobs:
           path: 'flody_ws/etc/'
 
       - name: AWS Mfa login
-        uses: floatic-unicorn/floatic-github-actions/aws-mfa-login@main
+        uses: ./.github/actions/aws-mfa-login
         with:
           access_key_id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           secret_access_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
@@ -51,7 +51,7 @@ jobs:
           mfa_arn: ${{ secrets.MFA_ARN }}
 
       - name: PPA server access
-        uses: floatic-unicorn/floatic-github-actions/floatic-ppa-access@main
+        uses: ./.github/actions/floatic-ppa-access
         with:
           target_group_name: ${{ secrets.SECURITY_GROUP_NAME }}
 
